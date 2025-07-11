@@ -1,6 +1,7 @@
 {
-  "name": "github-page-twoo",
+  "name": "mycode",
   "private": true,
+  "homepage": "https://josea348.github.io/mycode",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
