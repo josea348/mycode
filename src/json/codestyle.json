@@ -1,0 +1,22 @@
+[
+    
+    {
+        "id": 1,
+        "title": "Estilos de navbar parte 1",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "",
+        "code": "bg-gray-900 text-white p-4 shadow-lg rounded-b-lg"
+    },
+    {
+        "id": 1,
+        "title": "Navbar",
+        "descripcion": "JavaScript (jsx)",
+        "code": "export default function CodeCard({ title, language, code }) {\n    return (\n        <div className='bg-white rounded-2xl shadow p-5'>\n            <h2 className='text-xl font-semibold text-gray-800 mb-2'>{title}</h2>\n            <p className='text-sm text-gray-500 mb-4'>Lenguaje: <span className='font-medium'>{language}</span></p>\n            <pre className=¡bg-gray-900 text-green-300 text-sm p-4 rounded overflow-x-auto¡>\n                <code>{code}</code>\n            </pre>\n        </div>\n    );\n}"
+    },
+    {
+        "id": 1,
+        "title": "Navbar",
+        "descripcion": "JavaScript (jsx)",
+        "code": "import { useState } from 'react';\n\nexport default function CodeCard({ title, language, code }) {\n    const [copied, setCopied] = useState(false);\n\n    const handleCopy = () => {\n        navigator.clipboard.writeText(code);\n        setCopied(true);\n        setTimeout(() => {\n            setCopied(false);\n        }, 2000);\n    };\n\n    return (\n        <div className='bg-white rounded-2xl shadow p-5'>\n            <h2 className='text-xl font-semibold text-gray-800 mb-2'>{title}</h2>\n            <p className='text-sm text-gray-500 mb-4'>Lenguaje: <span className='font-medium'>{language}</span></p>\n            <pre className='bg-gray-900 text-green-300 text-sm p-4 rounded overflow-x-auto'>\n                <code>{code}</code>\n                <button\n                    className=' bg-gray-700 text-white text-xs py-1 px-2 roundedhover:bg-gray-600'\n                    onClick={handleCopy}\n                >\n                    {copied ? 'copiado' : 'copiar'}\n                </button>\n            </pre>\n        </div>\n    );\n}\n"
+    }
+]

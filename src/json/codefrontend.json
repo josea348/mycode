@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Navbar",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "src/Components/Atoms/NavbarAtoms.jsx",
+        "code": "import React from 'react';\n\nexport default function NavbarAtoms({ children, className }) {\n  return (\n    <nav className={className}>\n      {children}\n    </nav>\n  );\n}\n"
+    },
+    {
+        "id": 2,
+        "title": "Navbar",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "src/Components/Atoms/NavbarAtoms.jsx",
+        "code": "import React from 'react';\n\n// Main App component for the Navbar\nexport default function NavbarAtoms({ children }) {\n  return (\n    // Navbar container with responsive padding and background\n    <nav className='bg-gray-900 text-white p-4 shadow-lg rounded-b-lg'>\n      {children}\n    </nav>\n  );\n}\n"
+    },
+    {
+        "id": 3,
+        "title": "Card of code",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "",
+        "code": "export default function CodeCard({ title, language, code }) {\n    return (\n        <div className='bg-white rounded-2xl shadow p-5'>\n            <h2 className='text-xl font-semibold text-gray-800 mb-2'>{title}</h2>\n            <p className='text-sm text-gray-500 mb-4'>Lenguaje: <span className='font-medium'>{language}</span></p>\n            <pre className=¡bg-gray-900 text-green-300 text-sm p-4 rounded overflow-x-auto¡>\n                <code>{code}</code>\n            </pre>\n        </div>\n    );\n}"
+    },
+    {
+        "id": 4,
+        "title": "Card of code plus copy",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "",
+        "code": "import { useState } from 'react';\n\nexport default function CodeCard({ title, language, code }) {\n    const [copied, setCopied] = useState(false);\n\n    const handleCopy = () => {\n        navigator.clipboard.writeText(code);\n        setCopied(true);\n        setTimeout(() => {\n            setCopied(false);\n        }, 2000);\n    };\n\n    return (\n        <div className='bg-white rounded-2xl shadow p-5'>\n            <h2 className='text-xl font-semibold text-gray-800 mb-2'>{title}</h2>\n            <p className='text-sm text-gray-500 mb-4'>Lenguaje: <span className='font-medium'>{language}</span></p>\n            <pre className='bg-gray-900 text-green-300 text-sm p-4 rounded overflow-x-auto'>\n                <code>{code}</code>\n                <button\n                    className=' bg-gray-700 text-white text-xs py-1 px-2 roundedhover:bg-gray-600'\n                    onClick={handleCopy}\n                >\n                    {copied ? 'copiado' : 'copiar'}\n                </button>\n            </pre>\n        </div>\n    );\n}\n"
+    },
+    {
+        "id": 5,
+        "title": "Carrusel",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "src/Components/Molecules/Carrusel.jsx",
+        "code": "import React, { useState, useEffect } from 'react';\n\nconst Carrusel = ({ imagenes }) => {\n  const [indiceActual, setIndiceActual] = useState(0);\n\n  useEffect(() => {\n    const intervalo = setInterval(() => {\n      setIndiceActual((indiceActual + 1) % imagenes.length);\n    }, 3000);\n    return () => clearInterval(intervalo);\n  }, [indiceActual, imagenes]);\n\n  const irAnterior = () => {\n    setIndiceActual((indiceActual - 1 + imagenes.length) % imagenes.length);\n  };\n\n  const irSiguiente = () => {\n    setIndiceActual((indiceActual + 1) % imagenes.length);\n  };\n\n  return (\n    <div className='carrusel'>\n      <button className='anterior' onClick={irAnterior}>\n        Anterior\n      </button>\n      <img src={imagenes[indiceActual]} alt='Imagen del carrusel' />\n      <button className='siguiente' onClick={irSiguiente}>\n        Siguiente\n      </button>\n      <div className='indicadores'>\n        {imagenes.map((_, index) => (\n          <span\n            key={index}\n            className={`indicador ${indiceActual === index ? 'activo' : ''}`}\n            onClick={() => setIndiceActual(index)}\n          />\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Carrusel;\n"
+    },
+    {
+        "id": 6,
+        "title": "Carrusel molecula",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "src/Components/Molecules/CarruselMolecula.jsx",
+        "code": "import React from 'react';\nimport Carrusel from './Carrusel';\n\nconst imagenes = [\n    './pulblic/IMG_20210703_171023_339.jpg',\n    './pulblic/Captura de pantalla (21).png',\n    './public/IMG_20230701_174457_337.jpg',\n];\n\nfunction CarruselMolecula() {\n    return (\n        <div className='App'>\n            <Carrusel imagenes={imagenes} />\n        </div>\n    );\n}\n\nexport default CarruselMolecula;\n"
+    }
+]

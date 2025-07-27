@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Hola Mundo en JavaScript",
+    "language": "JavaScript",
+    "code": "console.log('Hola Mundo');"
+  },
+  {
+    "id": 2,
+    "title": "Suma de dos números en Python",
+    "language": "Python",
+    "code": "a = 5\nb = 3\nprint(a + b)"
+  },
+  {
+    "id": 3,
+    "title": "Componente en React",
+    "language": "React",
+    "code": "function Saludo() {\n  return <h1>Hola React</h1>;\n}"
+  }
+]

@@ -1,0 +1,24 @@
+[
+    
+    {
+        "id": 1,
+        "title": ".env",
+        "descripcion": "🔍 Explicación del código:\n\n1. `DB_HOST=tu_host`\n\n ¿Qué es? Define el host (servidor) donde está alojada la base de datos.\n Ejemplo: si la base de datos está en tu propia máquina, puedes usar `localhost` o `127.0.0.1`. Si está en la nube, aquí iría una URL o dirección IP.\n\n2. `DB_USER=tu_usuario`\n\n ¿Qué es? Especifica el nombre de usuario que se usa para conectar a la base de datos.\n Ejemplo: `root` o el nombre que hayas configurado al crear tu base de datos.\n\n3. `DB_PASSWORD=tu_contrasena`\n\n ¿Qué es? La contraseña del usuario de base de datos. Es necesario para autenticarte.\n ⚠️ Nunca compartas este archivo públicamente sin ocultar esta línea.\n\n4. `DB_PORT=tu_puerto`\n\n ¿Qué es? Es el puerto de conexión que usa la base de datos.\n Por defecto:\n\n   MySQL: `3306`\n   PostgreSQL: `5432`\n\n5. `DB_DATABASE=nombre_de_la_base_de_datos`\n\n ¿Qué es? El nombre específico de la base de datos a la que se va a conectar tu aplicación.\n Ejemplo: `usuarios_db`, `tareas_app`, etc.\n\n6. `AUT_SECRET='some secret key'`\n\n ¿Qué es? Esta es una clave secreta usada normalmente para firmar y verificar tokens JWT (JSON Web Tokens).\n ¿Para qué sirve? Asegura que los tokens generados por tu app sean válidos y no puedan ser falsificados.\n\n7. `AUT_EXPIRE=48h`\n\n ¿Qué es? Define el tiempo de expiración de los tokens JWT.\n Significado: los tokens generados tendrán una validez de 48 horas antes de que el usuario tenga que autenticarse nuevamente.\n",
+        "ruta": "src/env/.env",
+        "code": "DB_HOST=tu_host\nDB_USER=tu_usuario\nDB_PASSWORD=tu_contrasena\nDB_PORT=tu_puerto\nDB_DATABASE=nombre_de_la_base_de_datos\n\nAUT_SECRET='some secret key'\nAUT_EXPIRE=48h\n"
+    },
+    {
+        "id": 2,
+        "title": "Conexión",
+        "descripcion": "JavaScript (js)",
+        "ruta": "src/db/db.js",
+        "code": "import { createPool } from 'mysql2/promise';\nimport dotenv from 'dotenv';\n\ndotenv.config({ path: './src/env/.env' });\n\nexport const pool = createPool({\n    host: process.env.DB_HOST,\n    user: process.env.DB_USER,\n    password: process.env.DB_PASSWORD,\n    port: process.env.DB_PORT,\n    database: process.env.DB_DATABASE\n});\n"
+    },
+    {
+        "id": 3,
+        "title": "Navbar",
+        "descripcion": "JavaScript (jsx)",
+        "ruta": "src/controller/controller.js",
+        "code": "import { pool } from '../db/db.js';\n\nexport const create = async (req, res) => {\n    try {\n        const { dato1, dato2, dato3, n... } = req.body;\n        let sql = 'INSERT INTO name_database(columna1,columna2,columna3,n...) VALUES (?,?,?,?)';\n        const [rows] = await pool.query(sql, [dato1, dato2, dato3, n...]);\n        if (rows.length === 0) {\n            res.status(404).json({message: 'No se registro.'});\n        } else {\n            res.status(200).json({message: 'Registrado exitosamente.'});\n        }\n    } catch (error) {\n        res.status(500).json({ message: error });\n    }};\n"
+    }
+]
